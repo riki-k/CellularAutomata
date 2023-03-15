@@ -34,13 +34,37 @@ CellularAutomataAlgorithm::CellularAutomataAlgorithm() : QGraphicsView()
     //Qualsiasi cella viva con più di tre celle vive adiacenti muore, come per effetto di sovrappopolazione;
     //Qualsiasi cella morta con esattamente tre celle vive adiacenti diventa una cella viva, come per effetto di riproduzione.
 
+    //test disegno quadrato
+    /*
+    pen.setColor(Qt::red);
+    brush = Qt::SolidPattern;
+    brush.setColor(Qt::green);
+    scene->addRect(0, 0, 100, 100, pen, brush);*/
+
     //provo a disegnare
 
+    for (int j = 0; j < dim_x; j++) {
+        for (int z = 0; z < dim_y; z++) {
+            
+            if (square[j][z] == 0) {
+                pen.setColor(Qt::black);
+                brush.setColor(Qt::black);
+            }
+            else {
+                pen.setColor(Qt::white);
+                brush.setColor(Qt::white);
+            }
 
+            scene->addRect(x, y, cell_size_x, cell_size_y, pen, brush);
+            x += cell_size_x;
+        }
+        y += cell_size_y;
+        x = 0;
+    }
 
     //game_life(quad_y, dim_x, dim_y);
-}
 
+    /*
     function game_life(quad, n_row, n_col) {
         var width = 600;
         var height = 600;
@@ -99,7 +123,7 @@ CellularAutomataAlgorithm::CellularAutomataAlgorithm() : QGraphicsView()
             a++;
             game_life();
         }
-    }
+    }*/
 
 }
 
