@@ -13,6 +13,7 @@ public:
     ~CellularAutomataAlgorithm();
 
     //void algorithm();
+    void set_grid();
     void gamelife();
 
 private:
@@ -32,5 +33,6 @@ private:
 
     std::vector <int> quad_x;
     std::vector <std::vector <int> >square;
+    std::vector <std::vector <int> >square_cp;
 
 };
