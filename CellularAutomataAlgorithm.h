@@ -3,6 +3,8 @@
 #include <QtWidgets/QWidget>
 #include "ui_CellularAutomataAlgorithm.h"
 #include <QGraphicsView>
+#include <iostream>
+#include <QTimer>
 
 class CellularAutomataAlgorithm : public QGraphicsView
 {
@@ -15,6 +17,9 @@ public:
     //void algorithm();
     void set_grid();
     void gamelife();
+
+public slots:
+    void drawTest();
 
 private:
     Ui::CellularAutomataAlgorithmClass ui;

@@ -1,6 +1,6 @@
 #include "CellularAutomataAlgorithm.h"
 #include <QGraphicsView>
-#include <iostream>
+
 
 CellularAutomataAlgorithm::CellularAutomataAlgorithm() : QGraphicsView()
 {
@@ -24,6 +24,7 @@ CellularAutomataAlgorithm::CellularAutomataAlgorithm() : QGraphicsView()
     //Qualsiasi cella viva con più di tre celle vive adiacenti muore, come per effetto di sovrappopolazione;
     //Qualsiasi cella morta con esattamente tre celle vive adiacenti diventa una cella viva, come per effetto di riproduzione.
     */
+
 }
 
 void CellularAutomataAlgorithm::set_grid() {
@@ -47,6 +48,8 @@ void CellularAutomataAlgorithm::drawTest() {
     brush.setColor(Qt::green);
     scene->addRect(0, 0, 100, 100, pen, brush);*/
 
+    set_grid();
+
     //provo a disegnare
     for (int j = 0; j < dim_x; j++) {
         for (int z = 0; z < dim_y; z++) {
@@ -66,9 +69,13 @@ void CellularAutomataAlgorithm::drawTest() {
         y += cell_size_y;
         x = 0;
     }
+    
+
 }
 
 void CellularAutomataAlgorithm::gamelife(){
+
+    set_grid();
 
     square_cp = square;
     int gen = 10;
@@ -111,12 +118,8 @@ void CellularAutomataAlgorithm::gamelife(){
         x = 0;
     }
 
-    if (gen > 0) {
-        _sleep(1);
-        gamelife();
-        gen--;
-    }
 }
+
 
 CellularAutomataAlgorithm::~CellularAutomataAlgorithm()
 {}
