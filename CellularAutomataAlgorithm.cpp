@@ -1,5 +1,6 @@
 #include "CellularAutomataAlgorithm.h"
 #include <QGraphicsView>
+#include "qdebug.h"
 
 
 CellularAutomataAlgorithm::CellularAutomataAlgorithm() : QGraphicsView()
@@ -48,7 +49,25 @@ void CellularAutomataAlgorithm::drawTest() {
     brush.setColor(Qt::green);
     scene->addRect(0, 0, 100, 100, pen, brush);*/
 
-    set_grid();
+    scene->clear();
+
+    if (first) {
+        set_grid();
+        first = false;
+    }
+
+    if (!first) {
+        for (int i = 0; i < dim_x; i++) {
+            for (int j = 0; j < dim_y; j++) {
+                if (square[i][j] == 0) {
+                    square[i][j] = 1;
+                }
+                else {
+                    square[i][j] = 0;
+                }
+            }
+        }
+    }
 
     //provo a disegnare
     for (int j = 0; j < dim_x; j++) {
@@ -69,16 +88,21 @@ void CellularAutomataAlgorithm::drawTest() {
         y += cell_size_y;
         x = 0;
     }
-    
 
+    x = 0;
+    y = 0;
 }
 
 void CellularAutomataAlgorithm::gamelife(){
 
-    set_grid();
+    scene->clear();
 
+    if (first) {
+        set_grid();
+        first = false;
+    }
+    
     square_cp = square;
-    int gen = 10;
     for (int j = 0; j < dim_x; j++) {
         for (int z = 0; z < dim_y; z++) {
             int n_neighborood = 0;
@@ -118,6 +142,9 @@ void CellularAutomataAlgorithm::gamelife(){
         x = 0;
     }
 
+    qDebug() << square[0][0];
+    x = 0;
+    y = 0;
 }
 
 

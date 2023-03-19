@@ -17,9 +17,8 @@ public:
     //void algorithm();
     void set_grid();
     void gamelife();
-
-public slots:
     void drawTest();
+
 
 private:
     Ui::CellularAutomataAlgorithmClass ui;
@@ -35,6 +34,7 @@ private:
     int cell_size_y = height / dim_y;
     int x = 0;
     int y = 0;
+    bool first = true;
 
     std::vector <int> quad_x;
     std::vector <std::vector <int> >square;
