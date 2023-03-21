@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 
     QTimer timer;
     QObject::connect(&timer, &QTimer::timeout, &w, &CellularAutomataAlgorithm::gamelife);
-    timer.start(2000);
+    timer.start(50);
 
     return a.exec();
 }
