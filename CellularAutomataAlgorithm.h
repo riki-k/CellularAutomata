@@ -18,7 +18,9 @@ public:
     void set_grid();
     void gamelife();
     void drawTest();
-
+    void draw();
+    int findNeighbor(int i, int j, int neigh);
+    void setNextGen(int i, int j, int neigh);
 
 private:
     Ui::CellularAutomataAlgorithmClass ui;

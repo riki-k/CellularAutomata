@@ -102,27 +102,25 @@ void CellularAutomataAlgorithm::gamelife(){
         first = false;
     }
     
+    //calcolo 
     square_cp = square;
     for (int j = 0; j < dim_x; j++) {
         for (int z = 0; z < dim_y; z++) {
             int n_neighborood = 0;
-            if (square[j][z] == 1) {
-                if (n_neighborood < 2 || n_neighborood > 3) {
-                    square_cp[j][z] == 0;
-                }
-                else if (n_neighborood > 1 && n_neighborood < 4) {
-                        //nothing
-                }
-            }
-            else {
-                if (n_neighborood == 3) {
-                    square_cp[j][z] == 1;
-                }
-            }
+            n_neighborood = findNeighbor(j, z, n_neighborood);
+            setNextGen(j, z, n_neighborood);
         }
     }
 
-    square = square_cp;
+    draw();
+
+    square = square_cp; 
+    qDebug() << square[0][0];
+    x = 0;
+    y = 0;
+}
+
+void CellularAutomataAlgorithm::draw() {
     for (int j = 0; j < dim_x; j++) {
         for (int z = 0; z < dim_y; z++) {
 
@@ -141,12 +139,45 @@ void CellularAutomataAlgorithm::gamelife(){
         y += cell_size_y;
         x = 0;
     }
-
-    qDebug() << square[0][0];
-    x = 0;
-    y = 0;
 }
 
+int CellularAutomataAlgorithm::findNeighbor(int i, int j, int neigh) {
+    for (int m = -1; m < 2; m++) {
+        for (int n = -1; n < 2; n++) {
+            if (i + m >= 0 && j + n >= 0) {
+                if (i + m <= dim_x - 1 && j + n <= dim_y - 1) {
+                    if (square_cp[i + m][j + n] == 1) {
+                        if (m == 0 && n == 0) {
+                            //nothing
+                        }
+                        else {
+                            neigh++;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return neigh;
+}
+
+void CellularAutomataAlgorithm::setNextGen(int i, int j, int neigh) {
+    //modifico la cella per la successiva gnerazione
+    if (square[i][j] == 1) {
+        if (neigh < 2 || neigh > 3) {
+            square_cp[i][j] == 0;
+        }
+        else if (neigh > 1 && neigh < 4) {
+            //nothing
+        }
+    }
+    else {
+        if (neigh == 3) {
+            square_cp[i][j] == 1;
+        }
+    }
+}
 
 CellularAutomataAlgorithm::~CellularAutomataAlgorithm()
 {}
