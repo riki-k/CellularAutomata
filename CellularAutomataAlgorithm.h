@@ -42,4 +42,8 @@ private:
     std::vector <std::vector <int> >square;
     std::vector <std::vector <int> >square_cp;
 
+
+    //debug
+    int d_width = 1000;
+    int d_height = 1000;
 };
