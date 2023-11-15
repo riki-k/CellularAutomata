@@ -12,24 +12,9 @@ CellularAutomataAlgorithm::CellularAutomataAlgorithm() : QGraphicsView()
     setInteractive(false);
     scene->setSceneRect(0, 0, width, height);
 
-    /*cellular automata è un sistema di celle con le seguenti caratteristiche
-    le celle sono delimitate da una griglia finita
-    ogni cella ha uno stato definito
-    ogni cella ha un vicinato di celle
-    ogni cella ha una sua vita
-    ogni interazione rappressenta una generazione
-    il nuovo stato della cella è determinato dallo stato della generazione precedente di quelle adiacenti
-
-    //Qualsiasi cella viva con meno di due celle vive adiacenti muore, come per effetto d'isolamento;
-    //Qualsiasi cella viva con due o tre celle vive adiacenti sopravvive alla generazione successiva;
-    //Qualsiasi cella viva con più di tre celle vive adiacenti muore, come per effetto di sovrappopolazione;
-    //Qualsiasi cella morta con esattamente tre celle vive adiacenti diventa una cella viva, come per effetto di riproduzione.
-    */
-
 }
 
 void CellularAutomataAlgorithm::set_grid() {
-    //riempo array con stati della cella (0, 1)
     srand(time(NULL));
     for (int i = 0; i < dim_x; i++) {
         for (int j = 0; j < dim_y; j++) {
@@ -42,7 +27,7 @@ void CellularAutomataAlgorithm::set_grid() {
 }
 
 void CellularAutomataAlgorithm::drawTest() {
-    //test disegno quadrato
+    //test square drawing
     /*
     pen.setColor(Qt::red);
     brush = Qt::SolidPattern;
@@ -69,7 +54,6 @@ void CellularAutomataAlgorithm::drawTest() {
         }
     }
 
-    //provo a disegnare
     for (int j = 0; j < dim_x; j++) {
         for (int z = 0; z < dim_y; z++) {
 
@@ -95,19 +79,16 @@ void CellularAutomataAlgorithm::drawTest() {
 
 void CellularAutomataAlgorithm::gamelife(){
 
-    //pulisco la scena
     scene->clear();
 
-    //se la prima volta imposto la griglia random
+    //set random grid on the first time
     if (first) {
         set_grid();
         first = false;
     }
     
-    //disegna
     draw();
-
-    //calcolo 
+ 
     square_cp = square;
     for (int j = 0; j < dim_x; j++) {
         for (int z = 0; z < dim_y; z++) {
@@ -166,7 +147,6 @@ int CellularAutomataAlgorithm::findNeighbor(int i, int j, int neigh) {
 }
 
 void CellularAutomataAlgorithm::setNextGen(int i, int j, int neigh) {
-    //modifico la cella per la successiva generazione
     if (square[i][j] == 1) {
         if (neigh < 2 || neigh > 3) {
             square_cp[i][j] = 0;
