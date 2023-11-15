@@ -166,7 +166,7 @@ int CellularAutomataAlgorithm::findNeighbor(int i, int j, int neigh) {
 }
 
 void CellularAutomataAlgorithm::setNextGen(int i, int j, int neigh) {
-    //modifico la cella per la successiva gnerazione
+    //modifico la cella per la successiva generazione
     if (square[i][j] == 1) {
         if (neigh < 2 || neigh > 3) {
             square_cp[i][j] = 0;
