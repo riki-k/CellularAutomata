@@ -1,5 +1,6 @@
 # Cellular Automata
 Cellular Automata Algorithm
+
 This is the first nonrecursive implementation of the "Cellular Automata" algorithm.
 
 Cellular automata is a cell system with the following characteristics:
